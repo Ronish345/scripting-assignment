@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Multiplication Table</title>
+</head>
+<body>
+
+<h2>Multiplication Table Generator</h2>
+
+<input type="text" id="num" placeholder="Enter a number">
+<button onclick="generateTable()">Generate</button>
+
+<div id="result"></div>
+
+<script>
+function generateTable() {
+    let value = document.getElementById("num").value;
+    let num = parseInt(value);
+
+    if (value === "" || isNaN(num)) {
+        document.getElementById("result").innerHTML =
+            "Please enter a valid number.";
+        return;
+    }
+
+    let output = `<h3>Table of ${num}</h3>`;
+
+    for (let i = 1; i <= 10; i++) {
+        output += `${num} × ${i} = ${num * i}<br>`;
+    }
+
+    document.getElementById("result").innerHTML = output;
+}
+</script>
+
+</body>
+</html>
