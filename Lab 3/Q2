@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<script>
+let arr = [1,2,3,4,2,5,3,6];
+let duplicates = [];
+
+for(let i = 0; i < arr.length; i++) {
+    if(arr.indexOf(arr[i]) !== i &&
+       duplicates.indexOf(arr[i]) === -1) {
+        duplicates.push(arr[i]);
+    }
+}
+
+document.write("Duplicate values: " + duplicates);
+</script>
+
+</body>
+</html>
