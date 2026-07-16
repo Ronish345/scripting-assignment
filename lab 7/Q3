@@ -1,0 +1,39 @@
+<?php
+
+class Student
+{
+    public $name;
+    public $roll;
+
+    function __construct($name, $roll)
+    {
+        $this->name = $name;
+        $this->roll = $roll;
+    }
+}
+
+class Result extends Student
+{
+    public $marks;
+
+    function __construct($name, $roll, $marks)
+    {
+        parent::__construct($name, $roll);
+        $this->marks = $marks;
+    }
+
+    function display()
+    {
+        echo "Name: " . $this->name . "<br>";
+        echo "Roll: " . $this->roll . "<br>";
+        echo "Marks: " . $this->marks . "<br><br>";
+    }
+}
+
+for ($i = 1; $i <= 20; $i++)
+{
+    $student = new Result("Student".$i, $i, rand(40,100));
+    $student->display();
+}
+
+?>
