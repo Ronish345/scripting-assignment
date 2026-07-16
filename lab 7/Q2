@@ -1,0 +1,33 @@
+<?php
+
+class Demo
+{
+    public function __call($name, $arguments)
+    {
+        if ($name == "display")
+        {
+            if (count($arguments) == 1)
+            {
+                echo "One Argument: " . $arguments[0];
+            }
+            elseif (count($arguments) == 2)
+            {
+                echo "Two Arguments: " . $arguments[0] . " " . $arguments[1];
+            }
+            else
+            {
+                echo "Method Overloading Example";
+            }
+        }
+    }
+}
+
+$obj = new Demo();
+
+$obj->display("Ronish");
+
+echo "<br>";
+
+$obj->display("Ronish", "Das");
+
+?>
