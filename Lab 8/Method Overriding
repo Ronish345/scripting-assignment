@@ -1,0 +1,33 @@
+<?php
+
+class Vehicle
+{
+    function start()
+    {
+        echo "Vehicle Started<br>";
+    }
+}
+
+class Car extends Vehicle
+{
+    function start()
+    {
+        echo "Car Started<br>";
+    }
+}
+
+class Bike extends Vehicle
+{
+    function start()
+    {
+        echo "Bike Started<br>";
+    }
+}
+
+$car = new Car();
+$bike = new Bike();
+
+$car->start();
+$bike->start();
+
+?>
