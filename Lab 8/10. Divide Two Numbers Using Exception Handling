@@ -1,0 +1,26 @@
+<?php
+
+$num1 = 20;
+$num2 = 0;
+
+try
+{
+    if ($num2 == 0)
+    {
+        throw new Exception("Denominator cannot be zero.");
+    }
+
+    $result = $num1 / $num2;
+
+    echo "Result: " . $result . "<br>";
+}
+catch (Exception $e)
+{
+    echo "Exception: " . $e->getMessage() . "<br>";
+}
+finally
+{
+    echo "Division operation completed.";
+}
+
+?>
