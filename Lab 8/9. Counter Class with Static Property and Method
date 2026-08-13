@@ -1,0 +1,26 @@
+<?php
+
+class Counter
+{
+    public static $count = 0;
+
+    function __construct()
+    {
+        self::$count++;
+    }
+
+    public static function getCount()
+    {
+        return self::$count;
+    }
+}
+
+$object1 = new Counter();
+$object2 = new Counter();
+$object3 = new Counter();
+$object4 = new Counter();
+$object5 = new Counter();
+
+echo "Total number of objects created: " . Counter::getCount();
+
+?>
