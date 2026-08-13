@@ -1,0 +1,35 @@
+<?php
+
+class Laptop
+{
+    public $brand;
+    public $model;
+    public $price;
+
+    function __construct($brand, $model, $price)
+    {
+        $this->brand = $brand;
+        $this->model = $model;
+        $this->price = $price;
+
+        echo "Laptop object created.<br><br>";
+    }
+
+    function displayDetails()
+    {
+        echo "Brand: " . $this->brand . "<br>";
+        echo "Model: " . $this->model . "<br>";
+        echo "Price: Rs. " . $this->price . "<br><br>";
+    }
+
+    function __destruct()
+    {
+        echo "Laptop object destroyed.";
+    }
+}
+
+$laptop = new Laptop("Dell", "Inspiron 15", 75000);
+
+$laptop->displayDetails();
+
+?>
