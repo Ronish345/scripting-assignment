@@ -1,0 +1,42 @@
+<?php
+
+class BankAccount
+{
+    private $balance;
+
+    function __construct($balance)
+    {
+        $this->balance = $balance;
+    }
+
+    public function deposit($amount)
+    {
+        $this->balance += $amount;
+    }
+
+    public function withdraw($amount)
+    {
+        if ($amount <= $this->balance) {
+            $this->balance -= $amount;
+        } else {
+            echo "Insufficient balance.<br>";
+        }
+    }
+
+    public function getBalance()
+    {
+        return $this->balance;
+    }
+}
+
+$account = new BankAccount(10000);
+
+echo "Initial Balance: Rs. " . $account->getBalance() . "<br>";
+
+$account->deposit(5000);
+echo "After Deposit: Rs. " . $account->getBalance() . "<br>";
+
+$account->withdraw(3000);
+echo "After Withdrawal: Rs. " . $account->getBalance() . "<br>";
+
+?>
