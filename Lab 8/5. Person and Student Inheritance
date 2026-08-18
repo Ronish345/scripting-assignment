@@ -25,7 +25,7 @@ class Student extends Person
 
 $student = new Student();
 
-$student->name = "Krisham Maharjan";
+$student->name = "Ronish Das";
 $student->age = 20;
 $student->course = "BCA";
 
