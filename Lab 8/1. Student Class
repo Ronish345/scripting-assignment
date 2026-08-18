@@ -15,8 +15,8 @@ class Student
 }
 
 $student1 = new Student();
-$student1->name = "Krisham Maharjan";
-$student1->rollNo = "2081017";
+$student1->name = "Ronish Das";
+$student1->rollNo = "2081026";
 $student1->course = "BCA";
 
 $student2 = new Student();
