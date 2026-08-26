@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Student Registration</title>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<style>
+
+form {
+    width: 300px;
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid gray;
+}
+
+input {
+    width: 100%;
+    padding: 7px;
+    margin: 7px 0 12px;
+    box-sizing: border-box;
+}
+
+button {
+    padding: 7px 15px;
+}
+
+#msg {
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<form id="form">
+
+<h2>Student Registration</h2>
+
+Name
+<input type="text" id="name" value="Ronish Das">
+
+Email
+<input type="text" id="email"
+value="ronish2081026@gmail.com">
+
+Phone
+<input type="text" id="phone" value="9813276828">
+
+Password
+<input type="password" id="password">
+
+Confirm Password
+<input type="password" id="confirm">
+
+<button type="submit">Register</button>
+
+<p id="msg"></p>
+
+</form>
+
+<script>
+
+$("#form").submit(function(e) {
+
+    e.preventDefault();
+
+    let name = $("#name").val().trim();
+    let email = $("#email").val().trim();
+    let phone = $("#phone").val().trim();
+    let password = $("#password").val();
+    let confirm = $("#confirm").val();
+
+    if (name == "") {
+        $("#msg").text("Name is required.");
+        return;
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        $("#msg").text("Enter a valid email.");
+        return;
+    }
+
+    if (!/^[0-9]{10}$/.test(phone)) {
+        $("#msg").text("Phone must contain 10 digits.");
+        return;
+    }
+
+    if (password.length < 8) {
+        $("#msg").text("Password must contain 8 characters.");
+        return;
+    }
+
+    if (password != confirm) {
+        $("#msg").text("Passwords do not match.");
+        return;
+    }
+
+    $.ajax({
+
+        url: "register.php",
+        type: "POST",
+
+        data: {
+            name: name,
+            email: email,
+            phone: phone,
+            password: password
+        },
+
+        success: function(data) {
+            $("#msg").text(data);
+        }
+
+    });
+
+});
+
+</script>
+
+</body>
+</html>
