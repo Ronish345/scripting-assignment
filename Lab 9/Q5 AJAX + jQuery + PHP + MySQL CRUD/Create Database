@@ -9,3 +9,14 @@ CREATE TABLE students (
     course VARCHAR(100) NOT NULL,
     semester INT NOT NULL
 );
+
+or 
+
+INSERT INTO students
+(name, roll_no, course, semester)
+VALUES
+('Ronish Das', '2081026', 'BCA', 4),
+('Ram', '2081004', 'BCA', 4),
+('Sita', '2081005', 'BCA', 4),
+('Hari', '2081006', 'BCA', 4),
+('Gita', '2081007', 'BCA', 4);
