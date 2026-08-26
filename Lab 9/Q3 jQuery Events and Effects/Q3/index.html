@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>jQuery Events and Effects</title>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<style>
+
+body {
+    font-family: Arial;
+    text-align: center;
+}
+
+#box {
+    width: 250px;
+    height: 80px;
+    margin: 20px auto;
+    padding: 20px;
+    background: lightpink;
+}
+
+button {
+    padding: 8px;
+    margin: 3px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>jQuery Events and Effects</h1>
+
+<div id="box">Move your mouse here</div>
+
+<button id="click">Click</button>
+<button id="dbl">Double Click</button>
+<button id="hide">Hide</button>
+<button id="show">Show</button>
+<button id="toggle">Toggle</button>
+<button id="fadein">Fade In</button>
+<button id="fadeout">Fade Out</button>
+<button id="slide">Slide Toggle</button>
+
+<br><br>
+
+<input type="text" id="text" placeholder="Type something">
+
+<p id="msg"></p>
+
+<script>
+
+$(document).ready(function() {
+
+    $("#click").click(function() {
+        $("#msg").text("Button clicked!");
+    });
+
+    $("#dbl").dblclick(function() {
+        $("#msg").text("Button double-clicked!");
+    });
+
+    $("#box").mouseenter(function() {
+        $("#msg").text("Mouse entered the box!");
+    });
+
+    $("#text").keyup(function() {
+        $("#msg").text("You typed: " + $(this).val());
+    });
+
+    $("#hide").click(function() {
+        $("#box").hide();
+    });
+
+    $("#show").click(function() {
+        $("#box").show();
+    });
+
+    $("#toggle").click(function() {
+        $("#box").toggle();
+    });
+
+    $("#fadein").click(function() {
+        $("#box").fadeIn();
+    });
+
+    $("#fadeout").click(function() {
+        $("#box").fadeOut();
+    });
+
+    $("#slide").click(function() {
+        $("#box").slideToggle();
+    });
+
+});
+
+</script>
+
+</body>
+</html>
