@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Student Management System</title>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<style>
+
+body {
+    font-family: Arial;
+}
+
+h2 {
+    text-align: center;
+}
+
+form {
+    width: 300px;
+    margin: auto;
+    padding: 15px;
+    border: 1px solid gray;
+}
+
+input {
+    width: 100%;
+    padding: 6px;
+    margin: 5px 0 10px;
+    box-sizing: border-box;
+}
+
+button {
+    padding: 5px 10px;
+    margin: 2px;
+    border: 1px solid gray;
+    background: #eee;
+}
+
+#search {
+    display: block;
+    width: 200px;
+    margin: 20px auto;
+}
+
+table {
+    border-collapse: collapse;
+    width: 90%;
+    margin: auto;
+}
+
+th, td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: center;
+}
+
+th {
+    background: #8888dd;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h2>Student Management System</h2>
+
+<form id="form">
+
+<input type="hidden" id="id">
+
+Name:
+<input type="text" id="name" value="Ronish Das">
+
+Roll Number:
+<input type="text" id="roll" value="2081026">
+
+Course:
+<input type="text" id="course" value="BCA">
+
+Semester:
+<input type="number" id="semester" value="4">
+
+<button type="submit" id="save">Add Student</button>
+
+<button type="button" id="cancel">Cancel</button>
+
+</form>
+
+<p id="message" style="text-align:center"></p>
+
+<input
+    type="text"
+    id="search"
+    placeholder="Search student by name..."
+>
+
+<table>
+
+<tr>
+<th>ID</th>
+<th>Name</th>
+<th>Roll Number</th>
+<th>Course</th>
+<th>Semester</th>
+<th>Action</th>
+</tr>
+
+<tbody id="data"></tbody>
+
+</table>
+
+<script>
+
+$(document).ready(function() {
+
+    loadStudents();
+
+    $("#form").submit(function(e) {
+
+        e.preventDefault();
+
+        let id = $("#id").val();
+
+        let data = {
+            name: $("#name").val(),
+            roll: $("#roll").val(),
+            course: $("#course").val(),
+            semester: $("#semester").val()
+        };
+
+        if (id == "") {
+
+            $.post("add.php", data, function(result) {
+
+                $("#message").text(result);
+                loadStudents();
+
+            });
+
+        } else {
+
+            data.id = id;
+
+            $.post("update.php", data, function(result) {
+
+                $("#message").text(result);
+                $("#id").val("");
+                $("#save").text("Add Student");
+                loadStudents();
+
+            });
+        }
+    });
+
+
+    $("#search").keyup(function() {
+
+        $.post(
+            "search.php",
+            {name: $(this).val()},
+            function(result) {
+                $("#data").html(result);
+            }
+        );
+
+    });
+
+
+    $("#cancel").click(function() {
+
+        $("#form")[0].reset();
+        $("#id").val("");
+        $("#save").text("Add Student");
+
+    });
+
+});
+
+
+function loadStudents() {
+
+    $.get("fetch.php", function(result) {
+
+        $("#data").html(result);
+
+    });
+
+}
+
+
+function deleteStudent(id) {
+
+    if (confirm("Delete this student?")) {
+
+        $.post(
+            "delete.php",
+            {id: id},
+            function(result) {
+
+                $("#message").text(result);
+                loadStudents();
+
+            }
+        );
+    }
+
+}
+
+
+function editStudent(id) {
+
+    let row = $("#data tr").filter(function() {
+
+        return $(this).find("td:first").text() == id;
+
+    });
+
+    $("#id").val(id);
+    $("#name").val(row.find("td:eq(1)").text());
+    $("#roll").val(row.find("td:eq(2)").text());
+    $("#course").val(row.find("td:eq(3)").text());
+    $("#semester").val(row.find("td:eq(4)").text());
+
+    $("#save").text("Update Student");
+
+}
+
+</script>
+
+</body>
+</html>
